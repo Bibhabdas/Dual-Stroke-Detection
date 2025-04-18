@@ -1,0 +1,1 @@
+## This if our final year project. In this project we will predict if you have brain stroke or heart stroke attack chances. 
