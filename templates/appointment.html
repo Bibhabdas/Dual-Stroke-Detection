@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Confirmation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .container {
+            text-align: center;
+            background: #ffe6e6;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 90%;
+        }
+        .header {
+            background: green;
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+        }
+        .content {
+            padding: 20px;
+            font-size: 18px;
+        }
+        .content strong {
+            font-weight: bold;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #5c7cfa;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .button:hover {
+            background: #4a6cd6;
+        }
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Appointment</div>
+        <div class="content">
+            <p>You successfully booked your appointment.</p>
+            <p>You will get a call from the selected doctor on <strong>Monday (03/03/2025)</strong>.</p>
+            <p>You booked your appointment at <strong>9.00 am</strong>.</p>
+            <a href="/home" class="button">Back to Home Page</a>
+        </div>
+    </div>
+</body>
+</html>

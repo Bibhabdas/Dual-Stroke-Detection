@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardiologist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8d7da;
+        }
+        .header {
+            background-color: green;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .tabs {
+            display: flex;
+            padding: 10px;
+            background-color: white;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            border: none;
+            background: none;
+        }
+        .tab.active {
+            background-color: black;
+            color: white;
+            border-radius: 5px;
+        }
+        .container {
+            padding: 20px;
+        }
+        .doctors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 10px;
+        }
+        .doctor-card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .doctor-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+        .available {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Doctor Consultation</div>
+    
+    <div class="tabs">
+        <button class="tab active">Cardiologist</button>
+        <button onclick="document.location='/neuro'" class="tab" >Neurologist</button>
+    </div>
+    
+    <div class="container">
+        <p>Search result: 5 Cardiologists are Available</p>
+        <div class="doctors">
+            <div class="doctor-card">
+              <a href="/dibya_cardio">  <img src="templates/image/doc1.jpg" alt="Doctor"></a>
+                <p class="available">● Available</p>
+                <p><strong>Dr. Dibya Baruah</strong></p>
+                <p>Cardiologist</p>
+            </div>
+            <div class="doctor-card">
+               <a href="/vignesh_cardio"> <img src="templates/image/doc2.jpg" alt="Doctor"></a>
+                <p class="available">● Available</p>
+                <p><strong>Dr. Vignesh Thanikaivasan</strong></p>
+                <p>Cardiologist</p>
+            </div>
+            <div class="doctor-card">
+              <a href="/sarita_cardio">  <img src="templates/image/doc3.jpg" alt="Doctor"></a>
+                <p><strong>Dr. Sarita Rao</strong></p>
+                <p>Cardiologist</p>
+            </div>
+            <div class="doctor-card">
+               <a href="/ranga_cardio"> <img src="templates/image/doc4.jpg" alt="Doctor"></a>
+                <p><strong>Dr. Ranga Reddy B V A</strong></p>
+                <p>Cardiologist</p>
+            </div>
+            <div class="doctor-card">
+              <a href="/pathak_cardio">  <img src="templates/image/doc5.jpg" alt="Doctor"></a>
+                <p class="available">● Available</p>
+                <p><strong>Dr. S N Pathak</strong></p>
+                <p>Cardiologist</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

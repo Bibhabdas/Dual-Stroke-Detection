@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: white
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    form input, form select, form button {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    form button {
+      grid-column: span 2;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    form button:hover {
+      background-color: #0056b3;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    table th {
+      background-color: #f8f9fa;
+    }
+    .delete-btn {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .delete-btn:hover {
+      background-color: #c82333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Dashboard</h1>
+
+    <!-- Form Section -->
+    <form id="dataForm">
+      <select id="name" required>
+        <option value="">Select Doctors Name</option>
+        <option value="Dr. Dibya Baruah">Dr. Dibya Baruah (cardio)</option> 
+        <option value="Dr. S N Pathak">Dr. S N Pathak(cardio)</option>
+        <option value="Dr. Ranga Reddy B V A">Dr. Ranga Reddy B V A(cardio)</option>
+        <option value="Dr. Sarita Rao">Dr. Sarita Rao(cardio)</option>
+        <option value="Dr.Sushant Aildasani">Dr.Sushant Aildasani(neuro)</option>
+        <option value="Dr.K Siva Rama Gandhi">Dr.K Siva Rama Gandhi(neuro)</option>
+        <option value="Dr.Abidha Shah">Dr.Abidha Shah(neuro)</option>
+        <option value="Dr.Avinash Gupta">Dr.Avinash Gupta(neuro)</option>
+        <option value="Dr. Rashmi Devaraj">Dr. Rashmi Devaraj(neuro)</option>
+      </select>
+
+      <input type="email" id="email" placeholder="Patient Email" required />
+      <select id="specialization" required>
+        <option value="">Select Specialization</option>
+        <option value="Neurologist">Neurologist</option>
+        <option value="Cardiologist">Cardiologist</option>
+      </select>
+
+      <input type="date" id="date" required />
+      <input type="time" id="time" required />
+
+      <button type="submit">Add to Table</button>
+      <a href="/home"><button type="button">Home</button></a>
+    </form>
+
+    <!-- Table Section -->
+    <table id="dataTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data will be inserted here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    const form = document.getElementById("dataForm");
+    const tableBody = document.querySelector("#dataTable tbody");
+    let count = 1;
+
+    // Load data from localStorage
+    window.onload = function () {
+      const storedData = JSON.parse(localStorage.getItem("appointments")) || [];
+      storedData.forEach((item) => {
+        addRow(item, false);
+      });
+    };
+
+    // Handle form submit
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const role = document.getElementById("specialization").value.trim();
+      const date = document.getElementById("date").value;
+      const time = document.getElementById("time").value;
+
+      const newData = { id: Date.now(), name, email, role, date, time };
+      addRow(newData, true);
+      form.reset();
+    });
+
+    // Add a row to the table and optionally to localStorage
+    function addRow(data, save) {
+      const row = document.createElement("tr");
+      row.setAttribute("data-id", data.id);
+      row.innerHTML = `
+        <td>${count++}</td>
+        <td>${data.name}</td>
+        <td>${data.email}</td>
+        <td>${data.role}</td>
+        <td>${data.date}</td>
+        <td>${data.time}</td>
+        <td><button class="delete-btn">Delete</button></td>
+      `;
+      tableBody.appendChild(row);
+
+      if (save) {
+        const currentData = JSON.parse(localStorage.getItem("appointments")) || [];
+        currentData.push(data);
+        localStorage.setItem("appointments", JSON.stringify(currentData));
+      }
+    }
+
+    // Handle delete button click
+    tableBody.addEventListener("click", function (event) {
+      if (event.target.classList.contains("delete-btn")) {
+        const row = event.target.closest("tr");
+        const id = row.getAttribute("data-id");
+        row.remove();
+
+        // Update localStorage
+        let data = JSON.parse(localStorage.getItem("appointments")) || [];
+        data = data.filter(item => item.id != id);
+        localStorage.setItem("appointments", JSON.stringify(data));
+
+        // Refresh table count
+        refreshTable();
+      }
+    });
+
+    // Refresh table index numbers after deletion
+    function refreshTable() {
+      const rows = tableBody.querySelectorAll("tr");
+      count = 1;
+      rows.forEach(row => {
+        row.children[0].textContent = count++;
+      });
+    }
+  </script>
+</body>
+</html>

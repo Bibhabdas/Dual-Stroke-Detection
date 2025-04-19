@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Stroke Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4cccc;
+        }
+        .container {
+            width: 90%;
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #f8d7da;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .header {
+            background-color: red;
+            color: white;
+            padding: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
+        label {
+            font-size: 14px;
+            text-align: left;
+            flex: 1;
+        }
+        input {
+            flex: 2;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #e57373;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #d32f2f;
+        }
+        @media (max-width: 480px) {
+            .form-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            label {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Heart Stroke Detection</div>
+        <p><b>Enter Patient Details</b></p>
+        <form id="prediction-form" action="/predict" method="post">
+            <div class="form-group">
+                <label>Gender:</label>
+                <input type="text" name="gender" required>
+            </div>
+            <div class="form-group">
+                <label>Age:</label>
+                <input type="number" name="age" required>
+            </div>
+            <div class="form-group">
+                <label>Hypertension (1=Yes, 0=No):</label>
+                <input type="number" name="hypertension" required>
+            </div>
+            <div class="form-group">
+                <label>Heart Disease (1=Yes, 0=No):</label>
+                <input type="number" name="heart_disease" required>
+            </div>
+            <div class="form-group">
+                <label>Ever Married:</label>
+                <input type="text" name="ever_married" required>
+            </div>
+            <div class="form-group">
+                <label>Work Type:</label>
+                <input type="text" name="work_type" required>
+            </div>
+            <div class="form-group">
+                <label>Residence Type:</label>
+                <input type="text" name="residence_type" required>
+            </div>
+            <div class="form-group">
+                <label>Avg Glucose Level:</label>
+                <input type="number" name="avg_glucose_level" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label>BMI:</label>
+                <input type="number" name="bmi" step="0.1" required>
+            </div>
+            <div class="form-group">
+                <label>Smoking Status:</label>
+                <input type="text" name="smoking_status" required>
+            </div>
+            <button type="submit">Predict</button>
+        </form>
+        <h2 id="result"></h2>
+    </div>
+
+
+</body>
+</html>

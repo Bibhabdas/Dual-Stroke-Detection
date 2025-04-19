@@ -1,0 +1,104 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In to DUAL STROK DETECTION</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="flex w-screen h-screen bg-white">
+        <!-- Left Side -->
+        <div class="w-1/2 p-8">
+            <h2 class="text-2xl font-bold mb-6">Sign in to DUAL STROK DETECTION</h2>
+            <div class="flex justify-center space-x-4 mb-6">
+                <a href="/phone" class="text-gray-600"><i class="fas fa-phone fa-2x"></i></a>
+                <a href="/email" class="text-gray-600"><i class="fas fa-envelope fa-2x"></i></a>
+            </div>
+            <p class="text-center text-gray-600 mb-6">Use your email for registration</p>
+            <form id="signupForm">
+                <div class="mb-4">
+                    <div class="flex items-center bg-gray-200 rounded px-3 py-2">
+                        <i class="fas fa-user text-gray-600 mr-3"></i>
+                        <input type="text" id="name" name="name" placeholder="Name" class="bg-gray-200 outline-none w-full" required>
+                    </div>
+                    <p id="nameError" class="text-red-500 text-sm mt-1"></p>
+                </div>
+                <div class="mb-4">
+                    <div class="flex items-center bg-gray-200 rounded px-3 py-2">
+                        <i class="fas fa-envelope text-gray-600 mr-3"></i>
+                        <input type="email" id="email" name="email" placeholder="Email" class="bg-gray-200 outline-none w-full" required>
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <div class="flex items-center bg-gray-200 rounded px-3 py-2">
+                        <i class="fas fa-lock text-gray-600 mr-3"></i>
+                        <input type="password" id="password" name="password" placeholder="Password" class="bg-gray-200 outline-none w-full" required>
+                    </div>
+                    <p id="passwordError" class="text-red-500 text-sm mt-1"></p>
+                </div>
+                <button type="submit" class="w-full bg-blue-400 text-white py-2 rounded">Sign Up</button>
+            </form>
+        </div>
+
+        <!-- Right Side -->
+        <div class="w-1/2 bg-gradient-to-r from-teal-300 to-blue-400 p-8 flex flex-col justify-center items-center">
+            <h2 class="text-2xl font-bold text-white mb-4">Welcome Back...!</h2>
+            <p class="text-white mb-6 text-center">To keep connected with us, please login with your personal info</p>
+            <a href="/login"><button class="bg-gray-200 text-black py-2 px-6 rounded">Log in</button></a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value.trim();
+
+            let nameError = document.getElementById("nameError");
+            let passwordError = document.getElementById("passwordError");
+
+            nameError.textContent = "";
+            passwordError.textContent = "";
+
+            let valid = true;
+
+            // Name Validation
+            if (!name) {
+                nameError.textContent = "Name is required.";
+                valid = false;
+            } else if (name.length < 3) {
+                nameError.textContent = "Name must be at least 3 characters long.";
+                valid = false;
+            }
+
+            // Password Validation
+            if (!password) {
+                passwordError.textContent = "Password is required.";
+                valid = false;
+            } else if (password.length < 6) {
+                passwordError.textContent = "Password must be at least 6 characters long.";
+                valid = false;
+            } else if (!/\d/.test(password)) {
+                passwordError.textContent = "Password must contain at least one number.";
+                valid = false;
+            } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+                passwordError.textContent = "Password must contain at least one special character.";
+                valid = false;
+            }
+
+            if (valid) {
+                // Store user info in localStorage
+                const user = { name, email, password };
+                localStorage.setItem('user', JSON.stringify(user));
+
+                alert("Signup successful! Please login.");
+                window.location.href = "/success";
+            }
+        });
+    </script>
+</body>
+</html>

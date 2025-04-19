@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="image/logo1.png" id="favicon">
+    <title>Dual Stroke Prediction</title>
+    <style>
+        /* .favicon{
+            border-radius: 50%;
+        }       */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4cccc;
+        }
+        .header {
+            background-color: #2e7d32;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .header img {
+            width: 70px;
+            height: 70px;
+            margin-left: 10px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .header h2 {
+            color: white;
+            margin-left: 10px;
+            flex-grow: 1;
+        }
+        .buttons {
+            margin-right: 20px;
+        }
+        .buttons button {
+            background-color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .card {
+            width: 90%;
+            max-width: 250px;
+            text-align: center;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px;
+        }
+        .card img {
+            width: 100%;
+            height: auto;
+        }
+        .title {
+            background-color: red;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+        }
+        .predict-btn {
+            background-color: green;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+        }
+        .predict-btn:hover {
+            background-color: darkgreen;
+        }
+        @media (max-width: 600px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .buttons {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div style="display: flex; align-items: center;">
+            <img src="templates/image/logo.png" alt="Doctor Logo">
+            <h2>Dual Stroke Prediction</h2>
+        </div>
+        <div class="buttons">
+            <button onclick="document.location='/cardio'">Doctor Consultant</button>
+            <button onclick="document.location='/dashboard'">Dashboard</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="title">Heart Stroke Detection</div>
+            <img src="templates/image/heart.png" alt="Heart Stroke">
+            <button onclick="document.location='/heart_predict'" class="predict-btn"> Predict</button>
+        </div>
+        <div class="card">
+            <div class="title">Brain Stroke Detection</div>
+            <img src="templates/image/brain.png" alt="Brain Stroke">
+            <button onclick="document.location='/upload'" class="predict-btn">Predict</button>
+        </div>
+    </div>
+</body>
+</html>
